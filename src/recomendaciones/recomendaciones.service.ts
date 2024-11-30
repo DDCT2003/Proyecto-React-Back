@@ -21,22 +21,12 @@ export class RecomendacionesService {
         return await this.recomendacionModel.insertMany(documentos);
       }
 
-      async getByUsuario(username: string, fechaInicio?: string, fechaFin?: string): Promise<Recomendacion[]> {
-        const filter: any = { username };
+      async getByUsuario(username: string): Promise<Recomendacion[]> {
+        const recomendaciones = await this.recomendacionModel.find({ username }).exec();
     
-        if (fechaInicio || fechaFin) {
-          filter.fecha = {};
-          if (fechaInicio) filter.fecha.$gte = new Date(fechaInicio);
-          if (fechaFin) filter.fecha.$lte = new Date(fechaFin);
-        }
-    
-        // Consulta a la base de datos
-        const recomendaciones = await this.recomendacionModel.find(filter).exec();
-    
-        // Elimina duplicados basado en `prendaId`
-        const uniqueRecomendaciones = recomendaciones.filter(
-          (value, index, self) =>
-            index === self.findIndex((t) => t.prendaId === value.prendaId),
+        // Filtrar duplicados basado en `prendaId`
+        const uniqueRecomendaciones = Array.from(
+          new Map(recomendaciones.map((item) => [item.prendaId, item])).values()
         );
     
         return uniqueRecomendaciones;

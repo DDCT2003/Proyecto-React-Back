@@ -11,14 +11,11 @@ export class RecomendacionesController {
       return this.recomendacionService.guardarVarias(data.recomendaciones, data.username);
     }
     
-    @Get('usuario')
-    async getRecomendacionesByUsuario(
-      @Query('username') username: string,
-      @Query('fechaInicio') fechaInicio?: string,
-      @Query('fechaFin') fechaFin?: string,
-    ) {
-      return this.recomendacionService.getByUsuario(username, fechaInicio, fechaFin);
-    }
+   
+  @Get('usuario')
+  async getRecomendacionesByUsuario(@Query('username') username: string) {
+    return this.recomendacionService.getByUsuario(username);
+  }
 
 
 

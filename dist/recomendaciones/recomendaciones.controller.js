@@ -19,8 +19,11 @@ let RecomendacionesController = class RecomendacionesController {
     constructor(recomendacionService) {
         this.recomendacionService = recomendacionService;
     }
-    async guardarRecomendaciones(data, username) {
-        return this.recomendacionService.guardarVarias(data.recomendaciones, username);
+    async guardarRecomendaciones(data) {
+        return this.recomendacionService.guardarVarias(data.recomendaciones, data.username);
+    }
+    async getRecomendacionesByUsuario(username, fechaInicio, fechaFin) {
+        return this.recomendacionService.getByUsuario(username, fechaInicio, fechaFin);
     }
 };
 exports.RecomendacionesController = RecomendacionesController;
@@ -28,9 +31,18 @@ __decorate([
     (0, common_1.Post)('guardar-recomendaciones'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, Object]),
+    __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], RecomendacionesController.prototype, "guardarRecomendaciones", null);
+__decorate([
+    (0, common_1.Get)('usuario'),
+    __param(0, (0, common_1.Query)('username')),
+    __param(1, (0, common_1.Query)('fechaInicio')),
+    __param(2, (0, common_1.Query)('fechaFin')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String, String]),
+    __metadata("design:returntype", Promise)
+], RecomendacionesController.prototype, "getRecomendacionesByUsuario", null);
 exports.RecomendacionesController = RecomendacionesController = __decorate([
     (0, common_1.Controller)('recomendaciones'),
     __metadata("design:paramtypes", [recomendaciones_service_1.RecomendacionesService])

@@ -35,7 +35,7 @@ __decorate([
     __metadata("design:type", String)
 ], Recomendacion.prototype, "edad", void 0);
 __decorate([
-    (0, mongoose_1.Prop)({ default: Date.now }),
+    (0, mongoose_1.Prop)({ default: Date.now, type: Date }),
     __metadata("design:type", Date)
 ], Recomendacion.prototype, "fecha", void 0);
 exports.Recomendacion = Recomendacion = __decorate([

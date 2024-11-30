@@ -18,7 +18,7 @@ export class Recomendacion {
   @Prop({ required: true })
   edad: string;
 
-  @Prop({ default: Date.now }) // Campo de fecha con valor predeterminado
+  @Prop({ default: Date.now, type: Date}) // Campo de fecha con valor predeterminado
   fecha: Date;  
 }
 

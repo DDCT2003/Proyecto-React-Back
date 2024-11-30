@@ -31,6 +31,19 @@ let RecomendacionesService = class RecomendacionesService {
         }));
         return await this.recomendacionModel.insertMany(documentos);
     }
+    async getByUsuario(username, fechaInicio, fechaFin) {
+        const filter = { username };
+        if (fechaInicio || fechaFin) {
+            filter.fecha = {};
+            if (fechaInicio)
+                filter.fecha.$gte = new Date(fechaInicio);
+            if (fechaFin)
+                filter.fecha.$lte = new Date(fechaFin);
+        }
+        const recomendaciones = await this.recomendacionModel.find(filter).exec();
+        const uniqueRecomendaciones = recomendaciones.filter((value, index, self) => index === self.findIndex((t) => t.prendaId === value.prendaId));
+        return uniqueRecomendaciones;
+    }
 };
 exports.RecomendacionesService = RecomendacionesService;
 exports.RecomendacionesService = RecomendacionesService = __decorate([

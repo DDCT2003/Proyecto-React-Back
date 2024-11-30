@@ -4,5 +4,7 @@ export declare class RecomendacionesController {
     constructor(recomendacionService: RecomendacionesService);
     guardarRecomendaciones(data: {
         recomendaciones: any[];
-    }, username: any): Promise<any>;
+        username: any;
+    }): Promise<any>;
+    getRecomendacionesByUsuario(username: string, fechaInicio?: string, fechaFin?: string): Promise<import("./schemas/recomendaciones.schema").Recomendacion[]>;
 }
