@@ -30,7 +30,16 @@ export class RecomendacionesService {
           if (fechaFin) filter.fecha.$lte = new Date(fechaFin);
         }
     
-        return this.recomendacionModel.find(filter).exec();
+        // Consulta a la base de datos
+        const recomendaciones = await this.recomendacionModel.find(filter).exec();
+    
+        // Elimina duplicados basado en `prendaId`
+        const uniqueRecomendaciones = recomendaciones.filter(
+          (value, index, self) =>
+            index === self.findIndex((t) => t.prendaId === value.prendaId),
+        );
+    
+        return uniqueRecomendaciones;
       }
       
 }
