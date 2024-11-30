@@ -7,8 +7,8 @@ export class RecomendacionesController {
 
 
     @Post('guardar-recomendaciones')
-    async guardarRecomendaciones(@Body() data: { recomendaciones: any[] }, username: any) {
-      return this.recomendacionService.guardarVarias(data.recomendaciones, username);
+    async guardarRecomendaciones(@Body() data: { recomendaciones: any[], username: any }) {
+      return this.recomendacionService.guardarVarias(data.recomendaciones, data.username);
     }
     
 
