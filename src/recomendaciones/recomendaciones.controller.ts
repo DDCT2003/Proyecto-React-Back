@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Query } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
 import { RecomendacionesService } from './recomendaciones.service';
 
 @Controller('recomendaciones')
@@ -13,7 +13,7 @@ export class RecomendacionesController {
     
    
   @Get('usuario')
-  async getRecomendacionesByUsuario(@Query('username') username: string) {
+  async getRecomendacionesByUsuario(@Param('username') username: string) {
     return this.recomendacionService.getByUsuario(username);
   }
 
