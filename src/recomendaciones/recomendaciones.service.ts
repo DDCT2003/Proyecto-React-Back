@@ -8,7 +8,7 @@ export class RecomendacionesService {
     constructor(@InjectModel(Recomendacion.name) private recomendacionModel: Model<Recomendacion>) {}
 
 
-    async guardarVarias(recomendaciones: any[], username): Promise<any> {
+    async guardarVarias(recomendaciones: any[], username: any): Promise<any> {
         const documentos = recomendaciones.map((recomendacion) => ({
           prendaId: recomendacion._id,
           nombre: recomendacion.nombre,
