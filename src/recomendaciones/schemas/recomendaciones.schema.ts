@@ -17,4 +17,4 @@ export class Recomendacion {
 
 }
 
-export const UserSchema = SchemaFactory.createForClass(Recomendacion);
+export const RecomendacionSchema = SchemaFactory.createForClass(Recomendacion);
