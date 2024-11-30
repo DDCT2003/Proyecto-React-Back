@@ -1,7 +1,10 @@
-POST http://localhost:3000/color HTTP/1.1
+POST http://localhost:3000/user HTTP/1.1
 Content-Type: application/json
 
 {
-    "color": "Morado"
+    "nombre": "Vali",
+    "password":"12345",
+    "formalidad": "Casual",
+    "edad": -1
 }
 
