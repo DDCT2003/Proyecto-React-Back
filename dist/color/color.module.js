@@ -21,7 +21,7 @@ exports.ColorModule = ColorModule = __decorate([
             mongoose_1.MongooseModule.forFeature([{ name: color_schema_1.Color.name, schema: color_schema_1.ColorSchema }]),
         ],
         providers: [color_service_1.ColorService],
-        controllers: [color_controller_1.ColorController]
+        controllers: [color_controller_1.ColorController],
     })
 ], ColorModule);
 //# sourceMappingURL=color.module.js.map

@@ -29,7 +29,9 @@ let ColorService = class ColorService {
         return this.colorModel.find().exec();
     }
     async update(id, updateColor) {
-        return this.colorModel.findByIdAndUpdate(id, updateColor, { new: true }).exec();
+        return this.colorModel
+            .findByIdAndUpdate(id, updateColor, { new: true })
+            .exec();
     }
     async delete(id) {
         return this.colorModel.findByIdAndDelete(id).exec();

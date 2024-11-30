@@ -60,7 +60,9 @@ let WeatherService = class WeatherService {
     async getClothesbyWFA(edad, formalidad) {
         const category = await this.categorizeTemperature('Quito');
         const Agecategory = await this.categorizeAge(edad);
-        return this.clothesModel.find({ clima: category, formalidad: formalidad, edad: Agecategory }).exec();
+        return this.clothesModel
+            .find({ clima: category, formalidad: formalidad, edad: Agecategory })
+            .exec();
     }
 };
 exports.WeatherService = WeatherService;

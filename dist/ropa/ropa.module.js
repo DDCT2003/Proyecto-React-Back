@@ -21,7 +21,7 @@ exports.RopaModule = RopaModule = __decorate([
             mongoose_1.MongooseModule.forFeature([{ name: ropa_schema_1.Ropa.name, schema: ropa_schema_1.RopaSchema }]),
         ],
         providers: [ropa_service_1.RopaService],
-        controllers: [ropa_controller_1.RopaController]
+        controllers: [ropa_controller_1.RopaController],
     })
 ], RopaModule);
 //# sourceMappingURL=ropa.module.js.map

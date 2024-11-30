@@ -29,7 +29,9 @@ let RopaService = class RopaService {
         return this.ropaModel.find().exec();
     }
     async update(id, updateRopa) {
-        return this.ropaModel.findByIdAndUpdate(id, updateRopa, { new: true }).exec();
+        return this.ropaModel
+            .findByIdAndUpdate(id, updateRopa, { new: true })
+            .exec();
     }
     async searchOne(id) {
         return this.ropaModel.findById(id).exec();

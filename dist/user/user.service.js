@@ -32,7 +32,7 @@ let UserService = class UserService {
                 name: user.name,
                 role: user.role,
                 edad: user.edad,
-                formalidad: user.formalidad
+                formalidad: user.formalidad,
             };
         }
         return null;
