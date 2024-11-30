@@ -20,5 +20,17 @@ export class RecomendacionesService {
         // Inserta todas las recomendaciones de una vez
         return await this.recomendacionModel.insertMany(documentos);
       }
+
+      async getByUsuario(username: string, fechaInicio?: string, fechaFin?: string): Promise<Recomendacion[]> {
+        const filter: any = { username };
+    
+        if (fechaInicio || fechaFin) {
+          filter.fecha = {};
+          if (fechaInicio) filter.fecha.$gte = new Date(fechaInicio);
+          if (fechaFin) filter.fecha.$lte = new Date(fechaFin);
+        }
+    
+        return this.recomendacionModel.find(filter).exec();
+      }
       
 }
