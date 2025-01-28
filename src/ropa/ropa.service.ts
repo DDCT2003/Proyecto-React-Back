@@ -4,6 +4,7 @@ import { IRopaRepository } from './Interfaces/ropa-repository.interface';
 import { RopaRepositoryFactory } from './factories/ropa-repository.factory';
 import { InjectModel } from '@nestjs/mongoose';
 import { Ropa } from './ropa.model';
+import { Model } from 'mongoose';
 
 @Injectable()
 export class RopaService {
