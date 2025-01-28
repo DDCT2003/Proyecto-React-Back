@@ -2,24 +2,24 @@ import { Injectable } from '@nestjs/common';
 import { RopaValidator } from './Validators/RopaValidator';
 import { IRopaRepository } from './Interfaces/ropa-repository.interface';
 import { RopaRepositoryFactory } from './factories/ropa-repository.factory';
+import { InjectModel } from '@nestjs/mongoose';
+import { Ropa } from './ropa.model';
 
 @Injectable()
 export class RopaService {
   private ropaRepository: IRopaRepository;
 
-  constructor(private repositoryFactory: RopaRepositoryFactory) {
-    // Aquí creas el repositorio al momento de inicializar el servicio
-    this.ropaRepository = this.repositoryFactory.createRepository('mongo'); 
-  }
+  constructor(@InjectModel(Ropa.name) private ropaModel: Model<Ropa>) {}
 
+  async findAll(): Promise<Ropa[]> {
+    return this.ropaModel.find().exec(); // 🔹 Verifica que devuelva datos
+  }
   async create(ropa: any) {
     RopaValidator.validateEdad(ropa.edad);
     return this.ropaRepository.create(ropa);
   }
 
-  async findAll() {
-    return this.ropaRepository.findAll();
-  }
+
 
   async searchOne(id: string) {
     return this.ropaRepository.findOneById(id);
