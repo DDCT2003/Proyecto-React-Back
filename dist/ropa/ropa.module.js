@@ -13,12 +13,13 @@ const ClothesService_1 = require("./ClothesService");
 const ropa_service_1 = require("./ropa.service");
 const mongoose_1 = require("@nestjs/mongoose");
 const ropa_model_1 = require("./ropa.model");
+const axios_1 = require("@nestjs/axios");
 let RopaModule = class RopaModule {
 };
 exports.RopaModule = RopaModule;
 exports.RopaModule = RopaModule = __decorate([
     (0, common_1.Module)({
-        imports: [mongoose_1.MongooseModule.forFeature([{ name: ropa_model_1.Ropa.name, schema: ropa_model_1.RopaSchema }])],
+        imports: [axios_1.HttpModule, mongoose_1.MongooseModule.forFeature([{ name: ropa_model_1.Ropa.name, schema: ropa_model_1.RopaSchema }])],
         controllers: [ropa_controller_1.RopaController],
         providers: [ClothesService_1.ClothesService, ropa_service_1.RopaService],
         exports: [ClothesService_1.ClothesService, ropa_service_1.RopaService],

@@ -5,6 +5,8 @@ import { WeatherCategorizationService } from './WeatherCategorizationService';
 import { RopaModule } from '../ropa/ropa.module'; // Importa RopaModule
 import { HttpModule } from '@nestjs/axios';
 import { ApiWeatherService } from './ApiWeatherService';
+import { ClothesService } from 'src/ropa/ClothesService';
+import { RopaService } from 'src/ropa/ropa.service';
 
 @Module({
   imports: [RopaModule, HttpModule], // Asegúrate de importar RopaModule
@@ -12,7 +14,9 @@ import { ApiWeatherService } from './ApiWeatherService';
   providers: [
     WeatherService,
     ApiWeatherService,
-    WeatherCategorizationService,
+    WeatherCategorizationService
   ],
+  exports: [WeatherService],
+
 })
 export class WeatherModule {}
