@@ -1,13 +1,12 @@
-import { Model } from 'mongoose';
-import { Ropa } from '../ropa/schemas/ropa.schema';
-import { HttpService } from '@nestjs/axios';
+import { Ropa } from "src/ropa/ropa.model";
+import { WeatherApiInterface } from "./ApiInterface";
+import { WeatherCategorizationService } from "./WeatherCategorizationService";
+import { ClothesService } from "./ClothesService";
 export declare class WeatherService {
-    private readonly httpService;
-    private clothesModel;
-    constructor(httpService: HttpService, clothesModel: Model<Ropa>);
-    getTemperature(city: string): Promise<number>;
-    categorizeTemperature(city: string): Promise<string>;
-    categorizeAge(edad: number): Promise<string>;
+    private readonly weatherApi;
+    private readonly weatherCategorization;
+    private readonly clothesService;
+    constructor(weatherApi: WeatherApiInterface, weatherCategorization: WeatherCategorizationService, clothesService: ClothesService);
     getClothes(city: string): Promise<Ropa[]>;
-    getClothesbyWFA(edad: number, formalidad: string): Promise<Ropa[]>;
+    getClothesByAgeAndFormality(city: string, age: number, formalidad: string): Promise<Ropa[]>;
 }

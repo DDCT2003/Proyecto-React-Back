@@ -3,7 +3,7 @@ import { HttpModule } from '@nestjs/axios';
 import { MongooseModule } from '@nestjs/mongoose';
 import { WeatherService } from './weather.service';
 import { WeatherController } from './weather.controller';
-import { Ropa, RopaSchema } from '../ropa/schemas/ropa.schema';
+import { Ropa, RopaSchema } from 'src/ropa/ropa.model';
 
 @Module({
   imports: [

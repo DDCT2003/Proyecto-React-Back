@@ -12,7 +12,7 @@ const axios_1 = require("@nestjs/axios");
 const mongoose_1 = require("@nestjs/mongoose");
 const weather_service_1 = require("./weather.service");
 const weather_controller_1 = require("./weather.controller");
-const ropa_schema_1 = require("../ropa/schemas/ropa.schema");
+const ropa_model_1 = require("../ropa/ropa.model");
 let WeatherModule = class WeatherModule {
 };
 exports.WeatherModule = WeatherModule;
@@ -20,7 +20,7 @@ exports.WeatherModule = WeatherModule = __decorate([
     (0, common_1.Module)({
         imports: [
             axios_1.HttpModule,
-            mongoose_1.MongooseModule.forFeature([{ name: ropa_schema_1.Ropa.name, schema: ropa_schema_1.RopaSchema }]),
+            mongoose_1.MongooseModule.forFeature([{ name: ropa_model_1.Ropa.name, schema: ropa_model_1.RopaSchema }]),
         ],
         controllers: [weather_controller_1.WeatherController],
         providers: [weather_service_1.WeatherService],

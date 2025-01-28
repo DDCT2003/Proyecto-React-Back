@@ -8,48 +8,37 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var __param = (this && this.__param) || function (paramIndex, decorator) {
-    return function (target, key) { decorator(target, key, paramIndex); }
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.RopaService = void 0;
 const common_1 = require("@nestjs/common");
-const mongoose_1 = require("@nestjs/mongoose");
-const mongoose_2 = require("mongoose");
-const ropa_schema_1 = require("./schemas/ropa.schema");
+const ropa_repository_factory_1 = require("./factories/ropa-repository.factory");
+const RopaValidator_1 = require("./Validators/RopaValidator");
 let RopaService = class RopaService {
-    constructor(ropaModel) {
-        this.ropaModel = ropaModel;
+    constructor(repositoryFactory) {
+        this.repositoryFactory = repositoryFactory;
+        this.ropaRepository = this.repositoryFactory.createRepository('mongo');
     }
     async create(ropa) {
-        if (ropa.edad < 0) {
-            throw new Error('La edad no puede ser negativa.');
-        }
-        const newRopa = new this.ropaModel(ropa);
-        return await newRopa.save();
+        RopaValidator_1.RopaValidator.validateEdad(ropa.edad);
+        return this.ropaRepository.create(ropa);
     }
     async findAll() {
-        return this.ropaModel.find().exec();
-    }
-    async update(id, updateRopa) {
-        if (updateRopa.edad < 0) {
-            throw new Error('La edad no puede ser negativa.');
-        }
-        return this.ropaModel
-            .findByIdAndUpdate(id, updateRopa, { new: true })
-            .exec();
+        return this.ropaRepository.findAll();
     }
     async searchOne(id) {
-        return this.ropaModel.findById(id).exec();
+        return this.ropaRepository.findOneById(id);
+    }
+    async update(id, updateRopa) {
+        RopaValidator_1.RopaValidator.validateEdad(updateRopa.edad);
+        return this.ropaRepository.update(id, updateRopa);
     }
     async delete(id) {
-        return this.ropaModel.findByIdAndDelete(id).exec();
+        return this.ropaRepository.delete(id);
     }
 };
 exports.RopaService = RopaService;
 exports.RopaService = RopaService = __decorate([
     (0, common_1.Injectable)(),
-    __param(0, (0, mongoose_1.InjectModel)(ropa_schema_1.Ropa.name)),
-    __metadata("design:paramtypes", [mongoose_2.Model])
+    __metadata("design:paramtypes", [ropa_repository_factory_1.RopaRepositoryFactory])
 ], RopaService);
 //# sourceMappingURL=ropa.service.js.map
