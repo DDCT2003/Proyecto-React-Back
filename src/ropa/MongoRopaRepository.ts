@@ -1,8 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { IRopaRepository } from './Interfaces/ropa-repository.interface';
+
 import { Ropa } from './ropa.model';
+import { IRopaRepository } from './Interfaces/ropa-repository.interface';
 
 
 

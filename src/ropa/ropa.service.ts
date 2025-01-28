@@ -1,7 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import { RopaRepositoryFactory } from './factories/ropa-repository.factory';
-import { IRopaRepository } from 'src/ropa/interfaces/ropa-repository.interface';
+import { RopaRepositoryFactory } from './RopaRepository';
+import { IRopaRepository } from './Interfaces/ropa-repository.interface';
 import { RopaValidator } from './Validators/RopaValidator';
+
 
 @Injectable()
 export class RopaService {
