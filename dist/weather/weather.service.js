@@ -10,31 +10,33 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.WeatherService = void 0;
-const WeatherCategorizationService_1 = require("./WeatherCategorizationService");
-const ClothesService_1 = require("./ClothesService");
 const common_1 = require("@nestjs/common");
+const WeatherCategorizationService_1 = require("./WeatherCategorizationService");
+const ApiWeatherService_1 = require("./ApiWeatherService");
+const ClothesService_1 = require("../ropa/ClothesService");
 let WeatherService = class WeatherService {
-    constructor(weatherApi, weatherCategorization, clothesService) {
-        this.weatherApi = weatherApi;
-        this.weatherCategorization = weatherCategorization;
+    constructor(apiWeatherService, weatherCategorizationService, clothesService) {
+        this.apiWeatherService = apiWeatherService;
+        this.weatherCategorizationService = weatherCategorizationService;
         this.clothesService = clothesService;
     }
     async getClothes(city) {
-        const temperature = await this.weatherApi.getTemperature(city);
-        const category = this.weatherCategorization.categorizeTemperature(temperature);
+        const temperature = await this.apiWeatherService.getTemperature(city);
+        const category = this.weatherCategorizationService.categorizeTemperature(temperature);
         return this.clothesService.getClothesByCriteria(category);
     }
     async getClothesByAgeAndFormality(city, age, formalidad) {
-        const temperature = await this.weatherApi.getTemperature(city);
-        const tempCategory = this.weatherCategorization.categorizeTemperature(temperature);
-        const ageCategory = this.weatherCategorization.categorizeAge(age);
+        const temperature = await this.apiWeatherService.getTemperature(city);
+        const tempCategory = this.weatherCategorizationService.categorizeTemperature(temperature);
+        const ageCategory = this.weatherCategorizationService.categorizeAge(age);
         return this.clothesService.getClothesByCriteria(tempCategory, formalidad, ageCategory);
     }
 };
 exports.WeatherService = WeatherService;
 exports.WeatherService = WeatherService = __decorate([
     (0, common_1.Injectable)(),
-    __metadata("design:paramtypes", [Object, WeatherCategorizationService_1.WeatherCategorizationService,
+    __metadata("design:paramtypes", [ApiWeatherService_1.ApiWeatherService,
+        WeatherCategorizationService_1.WeatherCategorizationService,
         ClothesService_1.ClothesService])
 ], WeatherService);
 //# sourceMappingURL=weather.service.js.map

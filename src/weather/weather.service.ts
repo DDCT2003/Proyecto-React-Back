@@ -1,37 +1,28 @@
-import { Injectable } from "@nestjs/common";
-import { Ropa } from "src/ropa/ropa.model";
-import { WeatherCategorizationService } from "./WeatherCategorizationService";
-import { ClothesService } from "./ClothesService";
-import { ApiWeatherService } from "./ApiWeatherService";
+import { Injectable } from '@nestjs/common';
+import { WeatherCategorizationService } from './WeatherCategorizationService';
+import { ApiWeatherService } from './ApiWeatherService';
+import { ClothesService } from 'src/ropa/ClothesService';
 
 @Injectable()
 export class WeatherService {
   constructor(
-    private readonly weatherApi: ApiWeatherService,  // Cambio aquí
-    private readonly weatherCategorization: WeatherCategorizationService,
+    private readonly apiWeatherService: ApiWeatherService,
+    private readonly weatherCategorizationService: WeatherCategorizationService,
     private readonly clothesService: ClothesService,
   ) {}
 
-  async getClothes(city: string): Promise<Ropa[]> {
-    const temperature = await this.weatherApi.getTemperature(city);
-    const category = this.weatherCategorization.categorizeTemperature(temperature);
-
+  async getClothes(city: string): Promise<any[]> {
+    const temperature = await this.apiWeatherService.getTemperature(city);
+    const category = this.weatherCategorizationService.categorizeTemperature(temperature);
     return this.clothesService.getClothesByCriteria(category);
   }
 
-  async getClothesByAgeAndFormality(
-    city: string,
-    age: number,
-    formalidad: string,
-  ): Promise<Ropa[]> {
-    const temperature = await this.weatherApi.getTemperature(city);
-    const tempCategory = this.weatherCategorization.categorizeTemperature(temperature);
-    const ageCategory = this.weatherCategorization.categorizeAge(age);
+  // ✅ Asegúrate de que este método esté definido correctamente
+  async getClothesByAgeAndFormality(city: string, age: number, formalidad: string): Promise<any[]> {
+    const temperature = await this.apiWeatherService.getTemperature(city);
+    const tempCategory = this.weatherCategorizationService.categorizeTemperature(temperature);
+    const ageCategory = this.weatherCategorizationService.categorizeAge(age);
 
-    return this.clothesService.getClothesByCriteria(
-      tempCategory,
-      formalidad,
-      ageCategory,
-    );
+    return this.clothesService.getClothesByCriteria(tempCategory, formalidad, ageCategory);
   }
 }

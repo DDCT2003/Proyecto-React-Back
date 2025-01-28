@@ -1,14 +1,14 @@
 import { Injectable } from '@nestjs/common';
-import { RopaRepositoryFactory } from './RopaRepository';
 import { RopaValidator } from './Validators/RopaValidator';
 import { IRopaRepository } from './Interfaces/ropa-repository.interface';
-
+import { RopaRepositoryFactory } from './factories/ropa-repository.factory';
 
 @Injectable()
 export class RopaService {
   private ropaRepository: IRopaRepository;
 
   constructor(private repositoryFactory: RopaRepositoryFactory) {
+    // Aquí creas el repositorio al momento de inicializar el servicio
     this.ropaRepository = this.repositoryFactory.createRepository('mongo'); 
   }
 
