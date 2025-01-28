@@ -7,4 +7,4 @@ export interface IRopaRepository {
     update(id: string, updateRopa: any): Promise<Ropa>;
     delete(id: string): Promise<Ropa>;
   }
-  
+  //:)
