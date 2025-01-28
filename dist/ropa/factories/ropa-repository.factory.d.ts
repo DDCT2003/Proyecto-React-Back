@@ -1,5 +1,5 @@
-import { MongoRopaRepository } from '../repositories/mongo-ropa.repository';
-import { IRopaRepository } from '../interfaces/ropa-repository.interface';
+import { MongoRopaRepository } from 'src/ropa/repositories/mongo-ropa.repository';
+import { IRopaRepository } from 'src/ropa/interfaces/ropa-repository.interface';
 export declare class RopaRepositoryFactory {
     private readonly mongoRepository;
     constructor(mongoRepository: MongoRopaRepository);

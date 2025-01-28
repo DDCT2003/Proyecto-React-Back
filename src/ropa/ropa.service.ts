@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { RopaRepositoryFactory } from './factories/ropa-repository.factory';
-import { IRopaRepository } from './interfaces/ropa-repository.interface';
+import { IRopaRepository } from 'src/ropa/interfaces/ropa-repository.interface';
 import { RopaValidator } from './Validators/RopaValidator';
 
 @Injectable()
@@ -8,7 +8,7 @@ export class RopaService {
   private ropaRepository: IRopaRepository;
 
   constructor(private repositoryFactory: RopaRepositoryFactory) {
-    this.ropaRepository = this.repositoryFactory.createRepository('mongo'); // Seleccionamos MongoDB
+    this.ropaRepository = this.repositoryFactory.createRepository('mongo'); 
   }
 
   async create(ropa: any) {
