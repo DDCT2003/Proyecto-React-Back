@@ -8,22 +8,26 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.RopaService = void 0;
 const common_1 = require("@nestjs/common");
 const RopaValidator_1 = require("./Validators/RopaValidator");
-const ropa_repository_factory_1 = require("./factories/ropa-repository.factory");
+const mongoose_1 = require("@nestjs/mongoose");
+const ropa_model_1 = require("./ropa.model");
+const mongoose_2 = require("mongoose");
 let RopaService = class RopaService {
-    constructor(repositoryFactory) {
-        this.repositoryFactory = repositoryFactory;
-        this.ropaRepository = this.repositoryFactory.createRepository('mongo');
+    constructor(ropaModel) {
+        this.ropaModel = ropaModel;
+    }
+    async findAll() {
+        return this.ropaModel.find().exec();
     }
     async create(ropa) {
         RopaValidator_1.RopaValidator.validateEdad(ropa.edad);
         return this.ropaRepository.create(ropa);
-    }
-    async findAll() {
-        return this.ropaRepository.findAll();
     }
     async searchOne(id) {
         return this.ropaRepository.findOneById(id);
@@ -39,6 +43,7 @@ let RopaService = class RopaService {
 exports.RopaService = RopaService;
 exports.RopaService = RopaService = __decorate([
     (0, common_1.Injectable)(),
-    __metadata("design:paramtypes", [ropa_repository_factory_1.RopaRepositoryFactory])
+    __param(0, (0, mongoose_1.InjectModel)(ropa_model_1.Ropa.name)),
+    __metadata("design:paramtypes", [mongoose_2.Model])
 ], RopaService);
 //# sourceMappingURL=ropa.service.js.map

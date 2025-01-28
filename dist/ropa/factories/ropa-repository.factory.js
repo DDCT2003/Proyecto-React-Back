@@ -11,7 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.RopaRepositoryFactory = void 0;
 const common_1 = require("@nestjs/common");
-const mongo_ropa_repository_1 = require("../repositories/mongo-ropa.repository");
+const mongo_ropa_repository_1 = require("../Repositories/mongo-ropa.repository");
 let RopaRepositoryFactory = class RopaRepositoryFactory {
     constructor(mongoRepository) {
         this.mongoRepository = mongoRepository;

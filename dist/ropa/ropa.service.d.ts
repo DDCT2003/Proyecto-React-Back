@@ -1,11 +1,12 @@
-import { RopaRepositoryFactory } from './factories/ropa-repository.factory';
+import { Ropa } from './ropa.model';
+import { Model } from 'mongoose';
 export declare class RopaService {
-    private repositoryFactory;
+    private ropaModel;
     private ropaRepository;
-    constructor(repositoryFactory: RopaRepositoryFactory);
-    create(ropa: any): Promise<import("./ropa.model").Ropa>;
-    findAll(): Promise<import("./ropa.model").Ropa[]>;
-    searchOne(id: string): Promise<import("./ropa.model").Ropa>;
-    update(id: string, updateRopa: any): Promise<import("./ropa.model").Ropa>;
-    delete(id: string): Promise<import("./ropa.model").Ropa>;
+    constructor(ropaModel: Model<Ropa>);
+    findAll(): Promise<Ropa[]>;
+    create(ropa: any): Promise<Ropa>;
+    searchOne(id: string): Promise<Ropa>;
+    update(id: string, updateRopa: any): Promise<Ropa>;
+    delete(id: string): Promise<Ropa>;
 }
