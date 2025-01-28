@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { IRopaRepository } from '../Interfaces/ropa-repository.interface';
-import { MongoRopaRepository } from '../repositories/mongo-ropa.repository';
+import { MongoRopaRepository } from '../Repositories/mongo-ropa.repository';
 
 
 
