@@ -29,7 +29,7 @@ let ClothesService = class ClothesService {
             query.formalidad = formalidad;
         if (edad)
             query.edad = edad;
-        console.log(this.clothesModel.find({ clima: clima }).exec());
+        console.log(await this.clothesModel.find({ clima: clima }).exec());
         return this.clothesModel.find({ clima: clima, formalidad: formalidad, edad: edad }).exec();
     }
 };

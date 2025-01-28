@@ -9,7 +9,7 @@ import { ClothesService } from 'src/ropa/ClothesService';
 import { RopaService } from 'src/ropa/ropa.service';
 
 @Module({
-  imports: [RopaModule, HttpModule], // Asegúrate de importar RopaModule
+  imports: [RopaModule, HttpModule], 
   controllers: [WeatherController],
   providers: [
     WeatherService,

@@ -14,7 +14,7 @@ export class ClothesService {
     const query: any = { clima };
     if (formalidad) query.formalidad = formalidad;
     if (edad) query.edad = edad;
-    console.log(this.clothesModel.find({ clima: clima }).exec())
+    console.log(await this.clothesModel.find({ clima: clima }).exec())
 
     // Simula una búsqueda en la base de datos
     return this.clothesModel.find({ clima: clima, formalidad:formalidad, edad:edad }).exec()

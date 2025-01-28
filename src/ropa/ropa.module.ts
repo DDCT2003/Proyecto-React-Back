@@ -5,11 +5,12 @@ import { RopaService } from './ropa.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Ropa, RopaSchema } from './ropa.model';
 import { HttpModule } from '@nestjs/axios';
+import { MongoRopaRepository } from './repositories/mongo-ropa.repository';
 
 @Module({
   imports: [HttpModule,MongooseModule.forFeature([{ name: Ropa.name, schema: RopaSchema }])],
   controllers: [RopaController], 
-  providers: [ClothesService,RopaService], // Agrega ClothesService aquí
-  exports: [ClothesService,RopaService], // Expórtalo para otros módulos
+  providers: [ClothesService,RopaService,MongoRopaRepository], 
+  exports: [ClothesService,RopaService,MongoRopaRepository], 
 })
 export class RopaModule {}
