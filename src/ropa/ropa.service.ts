@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { MongoRopaRepository } from './repositories/mongo-ropa.repository';
+import { MongoRopaRepository } from './Repositories/mongo-ropa.repository';
 import { Ropa } from './ropa.model';
 import { RopaValidator } from './Validators/RopaValidator';
 
