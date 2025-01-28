@@ -1,13 +1,13 @@
+import { Injectable } from "@nestjs/common";
 import { Ropa } from "src/ropa/ropa.model";
-import { WeatherApiInterface } from "./ApiInterface";
 import { WeatherCategorizationService } from "./WeatherCategorizationService";
 import { ClothesService } from "./ClothesService";
-import { Injectable } from "@nestjs/common";
+import { ApiWeatherService } from "./ApiWeatherService";
 
 @Injectable()
 export class WeatherService {
   constructor(
-    private readonly weatherApi: WeatherApiInterface,
+    private readonly weatherApi: ApiWeatherService,  // Cambio aquí
     private readonly weatherCategorization: WeatherCategorizationService,
     private readonly clothesService: ClothesService,
   ) {}
